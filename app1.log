@@ -1,0 +1,12 @@
+2025-08-07 14:34:13 - ArtithmeticApp - DEBUG - Adding 10 and 15 gives 25
+2025-08-07 14:34:13 - ArtithmeticApp - DEBUG - Subtracting 15 - 10 = 5
+2025-08-07 14:34:13 - ArtithmeticApp - DEBUG - Multiplying 10 * 20 = 200
+2025-08-07 14:34:13 - ArtithmeticApp - DEBUG - Dividing 20 / 10 = 2.0
+2025-08-07 14:36:44 - ArtithmeticApp - DEBUG - Adding 10 and 15 gives 25
+2025-08-07 14:36:44 - ArtithmeticApp - DEBUG - Subtracting 15 - 10 = 5
+2025-08-07 14:36:44 - ArtithmeticApp - DEBUG - Multiplying 10 * 20 = 200
+2025-08-07 14:36:44 - ArtithmeticApp - DEBUG - Dividing 20 / 10 = 2.0
+2025-08-07 14:37:03 - ArtithmeticApp - DEBUG - Adding 10 and 15 gives 25
+2025-08-07 14:37:03 - ArtithmeticApp - DEBUG - Subtracting 15 - 10 = 5
+2025-08-07 14:37:03 - ArtithmeticApp - DEBUG - Multiplying 10 * 20 = 200
+2025-08-07 14:37:03 - ArtithmeticApp - ERROR - Division by zero error
