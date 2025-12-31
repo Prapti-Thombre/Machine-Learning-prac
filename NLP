@@ -1,0 +1,760 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": []
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "code",
+      "execution_count": 3,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "YB3AkftDng6H",
+        "outputId": "6bf033fc-7d80-4130-89f1-051e936c77b8"
+      },
+      "outputs": [
+        {
+          "metadata": {
+            "tags": null
+          },
+          "name": "stdout",
+          "output_type": "stream",
+          "text": [
+            "Requirement already satisfied: nltk in /usr/local/lib/python3.12/dist-packages (3.9.1)\n",
+            "Requirement already satisfied: click in /usr/local/lib/python3.12/dist-packages (from nltk) (8.3.1)\n",
+            "Requirement already satisfied: joblib in /usr/local/lib/python3.12/dist-packages (from nltk) (1.5.3)\n",
+            "Requirement already satisfied: regex>=2021.8.3 in /usr/local/lib/python3.12/dist-packages (from nltk) (2025.11.3)\n",
+            "Requirement already satisfied: tqdm in /usr/local/lib/python3.12/dist-packages (from nltk) (4.67.1)\n"
+          ]
+        }
+      ],
+      "source": [
+        "pip install nltk"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "corpus = \"\"\" Hello welcome , to krish Naik's NLP tutorials.\n",
+        "Please do watch the entire course! to become expert in NLP.\n",
+        "\"\"\""
+      ],
+      "metadata": {
+        "id": "8lmUVVnHnju9"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(corpus)"
+      ],
+      "metadata": {
+        "id": "oLN5s3llnwAk"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "## tokenization\n",
+        "## Sentecne --> paragraphs\n",
+        "from nltk.tokenize import sent_tokenize"
+      ],
+      "metadata": {
+        "id": "irwbfvYGnjxf"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import nltk\n",
+        "nltk.download('punkt_tab')\n",
+        "documents = sent_tokenize(corpus)"
+      ],
+      "metadata": {
+        "id": "CpPtViWlnj0H"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "type(documents)"
+      ],
+      "metadata": {
+        "id": "xakjdFd1oybK"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "for sentence in documents:\n",
+        "  print(sentence)"
+      ],
+      "metadata": {
+        "id": "bTkA_W0ooydH"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "##tokenization\n",
+        "## paragraph --> words\n",
+        "##sentence --> words\n",
+        "\n",
+        "from nltk.tokenize import word_tokenize"
+      ],
+      "metadata": {
+        "id": "eylHfNTioygl"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "word_tokenize(corpus)"
+      ],
+      "metadata": {
+        "id": "vM9cJNekpfYt"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "for sentence in documents:\n",
+        "  print(word_tokenize(sentence))"
+      ],
+      "metadata": {
+        "id": "3zHFWLKIpfap"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from nltk.tokenize import wordpunct_tokenize"
+      ],
+      "metadata": {
+        "id": "VzBZWUympfeK"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "wordpunct_tokenize(corpus)"
+      ],
+      "metadata": {
+        "id": "239OHNELnj2m"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from nltk.tokenize import TreebankWordTokenizer"
+      ],
+      "metadata": {
+        "id": "ZiGK-y3inj5_"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "tokenizer=TreebankWordTokenizer()"
+      ],
+      "metadata": {
+        "id": "kCxKHgNLqSqY"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "tokenizer.tokenize(corpus)"
+      ],
+      "metadata": {
+        "id": "1F4abewPqSsc"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "STEMMING\n"
+      ],
+      "metadata": {
+        "id": "G8ZIcj5p3nVA"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "words = [\"eating\",\"eaten\",\"eats\",\"writing\",\"writes\",\"programming\",\"programs\",\"history\",\"finally\",\"finalize\"]"
+      ],
+      "metadata": {
+        "id": "kqUgOqlt3qOQ"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#porter stemmer\n",
+        "\n",
+        "from nltk.stem import PorterStemmer"
+      ],
+      "metadata": {
+        "id": "zOEMnFF73qQn"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "stemming = PorterStemmer()"
+      ],
+      "metadata": {
+        "id": "5xzIlDUQ3qUY"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "for word in words:\n",
+        "  print(word+\"------>\"+stemming.stem(word))"
+      ],
+      "metadata": {
+        "id": "Um2pbtG63qXA"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "stemming.stem('congratulations')"
+      ],
+      "metadata": {
+        "id": "f4hmGvLr3qab"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "stemming.stem(\"sitting\")"
+      ],
+      "metadata": {
+        "id": "Md4lYU_tqSvo"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "###REgexpstemmer\n",
+        "from nltk.stem import RegexpStemmer"
+      ],
+      "metadata": {
+        "id": "j49zFOx25Gqk"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "reg_stemmer = RegexpStemmer('ing$|s$|e$|able$',min=4)#you can change the dollar position"
+      ],
+      "metadata": {
+        "id": "XJ67H4w75Gs9"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "reg_stemmer.stem('eating')"
+      ],
+      "metadata": {
+        "id": "JYKv_SKk5Gwc"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "reg_stemmer.stem('ingeating')"
+      ],
+      "metadata": {
+        "id": "VYdfs9kJ6pCL"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "##Snowball Stemmer - gives better accuracy as compRED TO THE PORTER_STEMMER\n",
+        "from nltk.stem import SnowballStemmer"
+      ],
+      "metadata": {
+        "id": "0YRVDNGm6pF2"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "snowballsstemmer=SnowballStemmer('english')"
+      ],
+      "metadata": {
+        "id": "fdA-wfId6_YV"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "for word in words:\n",
+        "  print(word +\"----->\"+snowballsstemmer.stem(word))"
+      ],
+      "metadata": {
+        "id": "Tk4FZOM_6pJS"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "stemming.stem(\"fairly\"),stemming.stem(\"sportingly\")"
+      ],
+      "metadata": {
+        "id": "AekSvGSp6pMu"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "snowballsstemmer.stem(\"fairly\"),snowballsstemmer.stem(\"sportingly\")"
+      ],
+      "metadata": {
+        "id": "3_au3-ul78Jr"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "stopwords and lemmatization hands on remaining\n"
+      ],
+      "metadata": {
+        "id": "j344umFxWOk6"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "PARTS OF SPEECH"
+      ],
+      "metadata": {
+        "id": "pZdre83cWW2p"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#parts of speech tagging\n",
+        "##speech of apj abdul kalam\n",
+        "paragraph = \"\"\"I have three visions for India. In 3000 years of our history people from all over the world have come and invaded us, captured our lands, conquered our minds. From Alexander onwards the Greeks, the Turks, the Moguls, the Portuguese, the British, the French, the Dutch, all of them came and looted us, took over what was ours. Yet we have not done this to any other nation. We have not conquered anyone. We have not grabbed their land, their culture and their history and tried to enforce our way of life on them. Why? Because we respect the freedom of others. That is why my FIRST VISION is that of FREEDOM. I believe that India got its first vision of this in 1857, when we started the war of Independence. It is this freedom that we must protect and nurture and build on. If we are not free, no one will respect us.\n",
+        "\n",
+        "We have 10 percent growth rate in most areas. Our poverty levels are falling. Our achievements are being globally recognised today. Yet we lack the self-confidence to see ourselves as a developed nation, self-reliant and self-assured. Isn’t this incorrect? MY SECOND VISION for India is DEVELOPMENT. For fifty years we have been a developing nation. It is time we see ourselves as a developed nation. We are among top five nations in the world in terms of GDP.\n",
+        "\n",
+        "I have a THIRD VISION. India must stand up to the world. Because I believe that unless India stands up to the world, no one will respect us. Only strength respects strength. We must be strong not only as a military power but also as an economic power. Both must go hand-in-hand. My good fortune was to have worked with three great minds. Dr.Vikram Sarabhai, of the Dept. of Space, Professor Satish Dhawan, who succeeded him and Dr. Brahm Prakash, father of nuclear material. I was lucky to have worked with all three of them closely and consider this the great opportunity of my life.\n",
+        "\"\"\"\n",
+        "\n"
+      ],
+      "metadata": {
+        "id": "lywNYH7P78Mb"
+      },
+      "execution_count": 5,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import nltk\n",
+        "nltk.download('punkt_tab')\n",
+        "nltk.download('stopwords')\n",
+        "from nltk.corpus import stopwords\n",
+        "sentences=nltk.sent_tokenize(paragraph)"
+      ],
+      "metadata": {
+        "id": "wTxIyVmj78P2",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "8518efb0-42f6-417a-ba1b-520dd628fceb"
+      },
+      "execution_count": 6,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stderr",
+          "text": [
+            "[nltk_data] Downloading package punkt_tab to /root/nltk_data...\n",
+            "[nltk_data]   Unzipping tokenizers/punkt_tab.zip.\n",
+            "[nltk_data] Downloading package stopwords to /root/nltk_data...\n",
+            "[nltk_data]   Unzipping corpora/stopwords.zip.\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "sentences"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "z6CA9vV6YeOQ",
+        "outputId": "96bdd9c3-dc49-4be1-a989-4f57b79d66b4"
+      },
+      "execution_count": 7,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "['I have three visions for India.',\n",
+              " 'In 3000 years of our history people from all over the world have come and invaded us, captured our lands, conquered our minds.',\n",
+              " 'From Alexander onwards the Greeks, the Turks, the Moguls, the Portuguese, the British, the French, the Dutch, all of them came and looted us, took over what was ours.',\n",
+              " 'Yet we have not done this to any other nation.',\n",
+              " 'We have not conquered anyone.',\n",
+              " 'We have not grabbed their land, their culture and their history and tried to enforce our way of life on them.',\n",
+              " 'Why?',\n",
+              " 'Because we respect the freedom of others.',\n",
+              " 'That is why my FIRST VISION is that of FREEDOM.',\n",
+              " 'I believe that India got its first vision of this in 1857, when we started the war of Independence.',\n",
+              " 'It is this freedom that we must protect and nurture and build on.',\n",
+              " 'If we are not free, no one will respect us.',\n",
+              " 'We have 10 percent growth rate in most areas.',\n",
+              " 'Our poverty levels are falling.',\n",
+              " 'Our achievements are being globally recognised today.',\n",
+              " 'Yet we lack the self-confidence to see ourselves as a developed nation, self-reliant and self-assured.',\n",
+              " 'Isn’t this incorrect?',\n",
+              " 'MY SECOND VISION for India is DEVELOPMENT.',\n",
+              " 'For fifty years we have been a developing nation.',\n",
+              " 'It is time we see ourselves as a developed nation.',\n",
+              " 'We are among top five nations in the world in terms of GDP.',\n",
+              " 'I have a THIRD VISION.',\n",
+              " 'India must stand up to the world.',\n",
+              " 'Because I believe that unless India stands up to the world, no one will respect us.',\n",
+              " 'Only strength respects strength.',\n",
+              " 'We must be strong not only as a military power but also as an economic power.',\n",
+              " 'Both must go hand-in-hand.',\n",
+              " 'My good fortune was to have worked with three great minds.',\n",
+              " 'Dr.Vikram Sarabhai, of the Dept.',\n",
+              " 'of Space, Professor Satish Dhawan, who succeeded him and Dr. Brahm Prakash, father of nuclear material.',\n",
+              " 'I was lucky to have worked with all three of them closely and consider this the great opportunity of my life.']"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 7
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import nltk\n",
+        "nltk.download('averaged_perceptron_tagger_eng')\n",
+        "#we will find the Pos tag\n",
+        "for i in range(len(sentences)):\n",
+        "  words=nltk.word_tokenize(sentences[i])\n",
+        "  words=[word for word in words if word not in set(stopwords.words('english'))]\n",
+        "  pos_tag=nltk.pos_tag(words)\n",
+        "  print(pos_tag)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "UuZ5AUynYeQ5",
+        "outputId": "342dc381-bbde-4bea-fcb8-dd18bb6a22ea"
+      },
+      "execution_count": 8,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stderr",
+          "text": [
+            "[nltk_data] Downloading package averaged_perceptron_tagger_eng to\n",
+            "[nltk_data]     /root/nltk_data...\n",
+            "[nltk_data]   Package averaged_perceptron_tagger_eng is already up-to-\n",
+            "[nltk_data]       date!\n"
+          ]
+        },
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "[('I', 'PRP'), ('three', 'CD'), ('visions', 'NNS'), ('India', 'NNP'), ('.', '.')]\n",
+            "[('In', 'IN'), ('3000', 'CD'), ('years', 'NNS'), ('history', 'NN'), ('people', 'NNS'), ('world', 'NN'), ('come', 'VBP'), ('invaded', 'VBN'), ('us', 'PRP'), (',', ','), ('captured', 'VBD'), ('lands', 'NNS'), (',', ','), ('conquered', 'VBD'), ('minds', 'NNS'), ('.', '.')]\n",
+            "[('From', 'IN'), ('Alexander', 'NNP'), ('onwards', 'NNS'), ('Greeks', 'NNP'), (',', ','), ('Turks', 'NNP'), (',', ','), ('Moguls', 'NNP'), (',', ','), ('Portuguese', 'NNP'), (',', ','), ('British', 'NNP'), (',', ','), ('French', 'NNP'), (',', ','), ('Dutch', 'NNP'), (',', ','), ('came', 'VBD'), ('looted', 'JJ'), ('us', 'PRP'), (',', ','), ('took', 'VBD'), ('.', '.')]\n",
+            "[('Yet', 'RB'), ('done', 'VBN'), ('nation', 'NN'), ('.', '.')]\n",
+            "[('We', 'PRP'), ('conquered', 'VBD'), ('anyone', 'NN'), ('.', '.')]\n",
+            "[('We', 'PRP'), ('grabbed', 'VBD'), ('land', 'NN'), (',', ','), ('culture', 'NN'), ('history', 'NN'), ('tried', 'VBD'), ('enforce', 'JJ'), ('way', 'NN'), ('life', 'NN'), ('.', '.')]\n",
+            "[('Why', 'WRB'), ('?', '.')]\n",
+            "[('Because', 'IN'), ('respect', 'NN'), ('freedom', 'NN'), ('others', 'NNS'), ('.', '.')]\n",
+            "[('That', 'DT'), ('FIRST', 'NNP'), ('VISION', 'NNP'), ('FREEDOM', 'NNP'), ('.', '.')]\n",
+            "[('I', 'PRP'), ('believe', 'VBP'), ('India', 'NNP'), ('got', 'VBD'), ('first', 'JJ'), ('vision', 'NN'), ('1857', 'CD'), (',', ','), ('started', 'VBD'), ('war', 'NN'), ('Independence', 'NN'), ('.', '.')]\n",
+            "[('It', 'PRP'), ('freedom', 'NN'), ('must', 'MD'), ('protect', 'VB'), ('nurture', 'NN'), ('build', 'NN'), ('.', '.')]\n",
+            "[('If', 'IN'), ('free', 'JJ'), (',', ','), ('one', 'CD'), ('respect', 'NN'), ('us', 'PRP'), ('.', '.')]\n",
+            "[('We', 'PRP'), ('10', 'CD'), ('percent', 'JJ'), ('growth', 'NN'), ('rate', 'NN'), ('areas', 'NNS'), ('.', '.')]\n",
+            "[('Our', 'PRP$'), ('poverty', 'NN'), ('levels', 'NNS'), ('falling', 'VBG'), ('.', '.')]\n",
+            "[('Our', 'PRP$'), ('achievements', 'NNS'), ('globally', 'RB'), ('recognised', 'VBN'), ('today', 'NN'), ('.', '.')]\n",
+            "[('Yet', 'RB'), ('lack', 'JJ'), ('self-confidence', 'NN'), ('see', 'NN'), ('developed', 'JJ'), ('nation', 'NN'), (',', ','), ('self-reliant', 'JJ'), ('self-assured', 'JJ'), ('.', '.')]\n",
+            "[('Isn', 'NNP'), ('’', 'NNP'), ('incorrect', 'NN'), ('?', '.')]\n",
+            "[('MY', 'PRP$'), ('SECOND', 'JJ'), ('VISION', 'NNP'), ('India', 'NNP'), ('DEVELOPMENT', 'NNP'), ('.', '.')]\n",
+            "[('For', 'IN'), ('fifty', 'JJ'), ('years', 'NNS'), ('developing', 'VBG'), ('nation', 'NN'), ('.', '.')]\n",
+            "[('It', 'PRP'), ('time', 'NN'), ('see', 'VB'), ('developed', 'JJ'), ('nation', 'NN'), ('.', '.')]\n",
+            "[('We', 'PRP'), ('among', 'IN'), ('top', 'JJ'), ('five', 'CD'), ('nations', 'NNS'), ('world', 'NN'), ('terms', 'NNS'), ('GDP', 'NNP'), ('.', '.')]\n",
+            "[('I', 'PRP'), ('THIRD', 'VBP'), ('VISION', 'NNP'), ('.', '.')]\n",
+            "[('India', 'NNP'), ('must', 'MD'), ('stand', 'VB'), ('world', 'NN'), ('.', '.')]\n",
+            "[('Because', 'IN'), ('I', 'PRP'), ('believe', 'VBP'), ('unless', 'IN'), ('India', 'NNP'), ('stands', 'VBZ'), ('world', 'NN'), (',', ','), ('one', 'CD'), ('respect', 'NN'), ('us', 'PRP'), ('.', '.')]\n",
+            "[('Only', 'RB'), ('strength', 'NN'), ('respects', 'NNS'), ('strength', 'NN'), ('.', '.')]\n",
+            "[('We', 'PRP'), ('must', 'MD'), ('strong', 'JJ'), ('military', 'JJ'), ('power', 'NN'), ('also', 'RB'), ('economic', 'JJ'), ('power', 'NN'), ('.', '.')]\n",
+            "[('Both', 'DT'), ('must', 'MD'), ('go', 'VB'), ('hand-in-hand', 'NN'), ('.', '.')]\n",
+            "[('My', 'PRP$'), ('good', 'JJ'), ('fortune', 'NN'), ('worked', 'VBD'), ('three', 'CD'), ('great', 'JJ'), ('minds', 'NNS'), ('.', '.')]\n",
+            "[('Dr.Vikram', 'NNP'), ('Sarabhai', 'NNP'), (',', ','), ('Dept', 'NNP'), ('.', '.')]\n",
+            "[('Space', 'NNP'), (',', ','), ('Professor', 'NNP'), ('Satish', 'NNP'), ('Dhawan', 'NNP'), (',', ','), ('succeeded', 'VBD'), ('Dr.', 'NNP'), ('Brahm', 'NNP'), ('Prakash', 'NNP'), (',', ','), ('father', 'RB'), ('nuclear', 'JJ'), ('material', 'NN'), ('.', '.')]\n",
+            "[('I', 'PRP'), ('lucky', 'VBP'), ('worked', 'VBD'), ('three', 'CD'), ('closely', 'RB'), ('consider', 'VBP'), ('great', 'JJ'), ('opportunity', 'NN'), ('life', 'NN'), ('.', '.')]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "wor = \"Taj mahal is a beautiful monument\".split()"
+      ],
+      "metadata": {
+        "id": "puhJ84jJrLWk"
+      },
+      "execution_count": 11,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#print(nltk.pos_tag(\"Taj MAhal is a beautiful monument\".split()))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "fXr8FnzxYeTa",
+        "outputId": "e182837d-6fc2-4d0c-ff20-d479342e4a10"
+      },
+      "execution_count": 9,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "[('Taj', 'NNP'), ('MAhal', 'NNP'), ('is', 'VBZ'), ('a', 'DT'), ('beautiful', 'JJ'), ('monument', 'NN')]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(nltk.pos_tag(wor))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "zFJRtnyqYeVr",
+        "outputId": "874bd169-d2d8-483d-b56a-ae26a72f2631"
+      },
+      "execution_count": 12,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "[('Taj', 'NNP'), ('mahal', 'NN'), ('is', 'VBZ'), ('a', 'DT'), ('beautiful', 'JJ'), ('monument', 'NN')]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!git --version\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "dkjF7iSJYeZP",
+        "outputId": "395327c1-bdda-47ba-aeac-c4362d68348f"
+      },
+      "execution_count": 1,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "git version 2.34.1\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!git clone https://github.com/Prapti-Thombre/Machine-Learning-prac.git"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "WEbqihAvjN79",
+        "outputId": "a34541d9-786f-4d7f-88db-9dbabab58c42"
+      },
+      "execution_count": 3,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Cloning into 'Machine-Learning-prac'...\n",
+            "remote: Enumerating objects: 5789, done.\u001b[K\n",
+            "remote: Counting objects: 100% (8/8), done.\u001b[K\n",
+            "remote: Compressing objects: 100% (6/6), done.\u001b[K\n",
+            "remote: Total 5789 (delta 1), reused 6 (delta 1), pack-reused 5781 (from 1)\u001b[K\n",
+            "Receiving objects: 100% (5789/5789), 44.37 MiB | 28.15 MiB/s, done.\n",
+            "Resolving deltas: 100% (698/698), done.\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "%cd Machine-Learning-prac/\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "f3z5QbkmjN_f",
+        "outputId": "3d94b1ae-fd68-4e76-ba07-d364529b39ed"
+      },
+      "execution_count": 4,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "/content/Machine-Learning-prac\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!git add .\n",
+        "!git commit -m \"Added ML notebook from Colab about NLP\"\n",
+        "!git push origin main\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "u40WNhrvjfIm",
+        "outputId": "b2af6a34-b41e-44ec-c6f5-c473454b3ede"
+      },
+      "execution_count": 8,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "On branch main\n",
+            "Your branch is up to date with 'origin/main'.\n",
+            "\n",
+            "nothing to commit, working tree clean\n",
+            "fatal: could not read Username for 'https://github.com': No such device or address\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!git config --global user.email \"prapti.thombre123@gmail.com\"\n",
+        "!git config --global user.name \"Prapti Thombre\""
+      ],
+      "metadata": {
+        "id": "U8i9mVSfjl8l"
+      },
+      "execution_count": 7,
+      "outputs": []
+    }
+  ]
+}
